@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
 import { animated, useSpring, config } from 'react-spring'
-import MDXRenderer from 'gatsby-mdx/mdx-renderer'
+import marked from 'marked'
 import { graphql } from 'gatsby'
 import Img from 'gatsby-image'
 import { SEO, Container, Layout, Hero, BGImage } from '../components'
@@ -53,7 +53,7 @@ const Project = ({ data: { contentfulProject }, location }) => {
   })
   const infoProps = useSpring({ config: config.slow, delay: 500, from: { opacity: 0 }, to: { opacity: 1 } })
   const contentProps = useSpring({ config: config.slow, delay: 1000, from: { opacity: 0 }, to: { opacity: 1 } })
-
+  const desc = marked(project.description.description);
   return (
     <Layout pathname={location.pathname} customSEO>
       <SEO pathname={location.pathname} postNode={contentfulProject} article />
@@ -83,7 +83,7 @@ const Project = ({ data: { contentfulProject }, location }) => {
       </Hero>
       <Container type="text">
         <animated.div style={contentProps}>
-          <div dangerouslySetInnerHTML={{__html: project.description.html}} />
+          <div dangerouslySetInnerHTML={{__html: desc}} />
         </animated.div>
       </Container>
     </Layout>
@@ -106,7 +106,6 @@ export const pageQuery = graphql`
       description {
         id
         description
-        html
       }
       cover {
         fluid(maxWidth: 1920, quality: 90) {
