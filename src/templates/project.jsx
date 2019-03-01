@@ -83,7 +83,7 @@ const Project = ({ data: { contentfulProject }, location }) => {
       </Hero>
       <Container type="text">
         <animated.div style={contentProps}>
-          <div>{project.description.description}</div>
+          <div dangerouslySetInnerHTML={{__html: project.description.html}} />
         </animated.div>
       </Container>
     </Layout>
@@ -106,6 +106,7 @@ export const pageQuery = graphql`
       description {
         id
         description
+        html
       }
       cover {
         fluid(maxWidth: 1920, quality: 90) {

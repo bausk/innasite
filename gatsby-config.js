@@ -13,6 +13,7 @@ module.exports = {
   plugins: [
     'gatsby-plugin-react-helmet',
     'gatsby-plugin-styled-components',
+    '@contentful/gatsby-transformer-contentful-richtext',
     {
       resolve: 'gatsby-source-filesystem',
       options: {

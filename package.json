@@ -21,6 +21,7 @@
     "test:e2e:ci": "start-server-and-test develop http://localhost:8000 cy:run:ci"
   },
   "dependencies": {
+    "@contentful/gatsby-transformer-contentful-richtext": "^13.0.1",
     "@mdx-js/mdx": "^0.16.8",
     "@mdx-js/tag": "^0.16.8",
     "babel-plugin-styled-components": "^1.10.0",
